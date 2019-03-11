@@ -13,7 +13,7 @@ int numUniqueEmails(char** emails, int emailSize)
 		can_rec = true;
 		for(int k =0; k < strlen(emails[i]); k++)
 		{	
-		 	printf("EmailFunc: %c\n",emails[i][k]);
+		 	printf("EmailFunc: %c\n",emails[i][k]); 
                         
 		 	if(emails[i][k] == '+')
 		 	{
@@ -25,7 +25,7 @@ int numUniqueEmails(char** emails, int emailSize)
 			}
 			if(can_rec)
 			{
-				new_emails[i][count_ar_word] = emails[i][k];
+				new_emails[i][count_ar_word] = emails[i][k]; //Error line 28 : Segmentation fault (core dumped)
 				count_ar_word++;
 
 			}
