@@ -2,13 +2,13 @@
 #include<string.h>
 #include<stdlib.h>
 #include<stdbool.h>
-int numUniqueEmails(char** emails, int emailSize)
+int numUniqueEmails(char** emails, int emailsSize)
 {
 	int count = 0;
-	char **new_emails = (char **)calloc(emailSize, sizeof(char));
+        char **new_emails = (char **)calloc(emailsSize, sizeof(char));
 	bool can_rec = true;
 	int count_ar_word = 0;
-	for(int i = 0;i < emailSize;i++)
+        for(int i = 0;i < emailsSize;i++)
 	{
 		count_ar_word = 0;
 		can_rec = true;
@@ -16,7 +16,7 @@ int numUniqueEmails(char** emails, int emailSize)
 
 		for(int k =0; k < strlen(emails[i]); k++)
 		{	
-		 	//printf("EmailFunc: %c\n",emails[i][k]);
+
 
 		 	if(emails[i][k] == '+')
 		 	{
@@ -31,55 +31,48 @@ int numUniqueEmails(char** emails, int emailSize)
 				if(emails[i][k] != '.')
 				{
 					new_emails[i][count_ar_word] = emails[i][k];
-					//strcpy(((*new_emails)[count_ar_word]),emails[i][k]);
+
 					count_ar_word++;
 
 				}
 				
 			}
 
-			//printf("New Email: %s\n",new_emails[i]);
+
 		 				
 		}
 		
 	}
 	
-	char *repeat_emails[emailSize];
-
-	for(int i = 0;i < emailSize;i++)
+        char *repeat_emails[emailsSize];
+	
+        for(int i = 0;i < emailsSize;i++)
 	{
-		for(int k = 0; k < emailSize;k++)
+                for(int k = 0; k < emailsSize;k++)
 		{
 			
-			if(i == k || new_emails[i] == new_emails[k])
+			if(i != k && strcmp(new_emails[i],new_emails[k]) == 0)
 			{
-				//repeat_emails[count_rep] = new_emails[k];
+				count++;
+			}
+			if(i == k || strcmp(new_emails[i],new_emails[k]) == 0)
+			{
+
 			
-				printf("REPEAT:  email1: %s - email2: %s\n",new_emails[i],new_emails[k]);
+                                //printf("REPEAT:  email1: %s - email2: %s\n",new_emails[i],new_emails[k]);
 				break;
 				
 			}
-			printf("NO REPEAT: email1: '%s' - email2: '%s'\n",new_emails[i],new_emails[k]);
-			count++;
+
+                                //printf("NO REPEAT: email1: '%s' - email2: '%s'\n",new_emails[i],new_emails[k]);
+				count++;
+				
+
 		}
 
 	}
 
 
-        //REPEAT:  email1: testemail@leetcodecom - email2: testemail@leetcodecom
-        //NO REPEAT: email1: 'restemail@leetcodecom' - email2: 'testemail@leetcodecom'
-        //REPEAT:  email1: restemail@leetcodecom - email2: restemail@leetcodecom
-        //NO REPEAT: email1: 'testemail@leetcodecom' - email2: 'testemail@leetcodecom'    ?????????????????????????????????
-        //NO REPEAT: email1: 'testemail@leetcodecom' - email2: 'restemail@leetcodecom'
-        //REPEAT:  email1: testemail@leetcodecom - email2: testemail@leetcodecom
-        //Count: 3
-
-	for(int i =0; i< emailSize;i++)
-	{
-		//for(int k =0; k < emailSize
-	//	printf("email: %s\n",repeat_emails[i]);
-
-	}
 
 	return count;
 }
@@ -97,3 +90,4 @@ int main()
 
 	return 0; 
 }
+
